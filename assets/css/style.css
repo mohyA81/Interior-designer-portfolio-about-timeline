@@ -1,0 +1,218 @@
+/* ===================== VARIABLES ===================== */
+  :root{
+    --bg: #fafafa;
+    --card-bg: #ffffff;
+    --muted: #707070;
+    --accent: #6b5df0; /* خاکستری-بنفش ملایم برای حس مدرن */
+    --shadow: 0 10px 30px rgba(20,20,30,0.06);
+    --radius: 12px;
+    --container-w: 1100px;
+    --gap: 28px;
+    --transition: 400ms cubic-bezier(.2,.9,.2,1);
+  }
+
+  /* ===================== BASE ===================== */
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background: var(--bg);
+    color: #222;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    line-height:1.5;
+  }
+
+  .wrap{
+    max-width:var(--container-w);
+    margin:48px auto;
+    padding: 0 20px;
+    padding-bottom: 96px;
+  }
+
+  /* ===================== ABOUT (keeps existing look) ===================== */
+  /* NOTE: We intentionally keep "about" styles minimal — you said About remains */
+  .about {
+    display:grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 40px;
+    align-items:start;
+    margin-bottom: 64px;
+  }
+  .about__image-wrapper{ /* ensure image doesn't overflow */
+    max-width:360px;
+  }
+  .about__image{
+    width:100%;
+    height:auto;
+    display:block;
+    border-radius:10px;
+    object-fit:cover;
+    box-shadow: var(--shadow);
+  }
+  .about__title{
+    font-family:"Playfair Display", serif;
+    font-size:32px;
+    margin:12px 0;
+  }
+  .about__text{color:var(--muted); font-size:16px; margin-bottom:16px;}
+  .about__features{display:grid; gap:14px; margin-top:10px;}
+  .about__cta{display:inline-block; margin-top:16px; padding:10px 16px; background:var(--accent); color:#fff; border-radius:8px; text-decoration:none}
+
+  /* ===================== WRAPPER CARD for TIMELINE + SKILLS ===================== */
+  .card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 28px;
+  }
+
+  /* container that holds the two columns inside the card */
+  .card-grid {
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 26px;
+    align-items:start;
+  }
+
+  /* ===================== TIMELINE (CARD STYLE) ===================== */
+  .timeline-card {
+    border-radius: 16px;
+    padding: 32px;
+    background: linear-gradient(180deg,#fff,#fbfbfd);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.01);
+    position: relative;
+  }
+
+  .timeline-title { font-family:"Playfair Display", serif; font-size:20px; margin:0 0 12px; color:#111; }
+  .timeline-item {
+    display:flex;
+    gap:14px;
+    align-items:flex-start;
+    padding:12px;
+    border-radius:10px;
+    transition: background var(--transition);
+  }
+  .timeline-item + .timeline-item { margin-top:12px; }
+
+  .timeline-item:hover { background: rgba(107,93,240,0.03); }
+
+  .timeline-dot {
+    width:44px;
+    height:44px;
+    border-radius:10px;
+    background: linear-gradient(180deg, rgba(107,93,240,0.12), rgba(107,93,240,0.06));
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+    position:relative;
+  }
+  .timeline-card::before {
+  content: "";
+  position: absolute;
+  left: 54px;
+  top: 70px;
+  bottom: 40px;
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    rgba(107,93,240,0.3),
+    rgba(107,93,240,0.05)
+  );
+}
+  .timeline-dot::after{
+    /* small inner circle */
+    content:"";
+    width:12px;height:12px;border-radius:50%;
+    background:var(--accent);
+    box-shadow:0 2px 8px rgba(107,93,240,0.25);
+  }
+  .timeline-body h4{ margin:0; font-size:16px; color:#111; }
+
+  .timeline-body p{ margin:6px 0 0; color:var(--muted); font-size:14px; }
+
+  /* ===================== SKILLS (CARD STYLE + Animated bars) ===================== */
+  /* SKILLS CARD */
+.skills-card {
+  background: #ffffff;
+  padding: 32px;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.01);
+}
+
+/* EACH ROW */
+.skill-row {
+  display: grid;
+  grid-template-columns: 1fr 2fr auto;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 22px;
+}
+
+/* NAME */
+.skill-name {
+  font-size: 15px;
+  color: #333;
+  white-space: nowrap;
+}
+
+/* BAR TRACK */
+.progress-track {
+  width: 100%;
+  height: 8px;
+  background: #e6e6e6;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+/* BAR FILL */
+.progress-fill {
+  display: block; /* این خط حتماً اضافه شود */
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, #6b5cff, #8f84ff);
+  border-radius: 999px;
+  transition: width 1.2s ease;
+}
+
+/* PERCENT */
+.skill-percent {
+  font-size: 14px;
+  color: #6b5cff;
+  font-weight: 500;
+}
+
+.skill-row[data-percent="98"], .skill-row[data-percent="97"] {
+  font-weight: 600;
+}
+
+/* subtle separators */
+.divider { height:1px; background:#f1f1f4; margin:18px 0; border-radius:4px }
+
+
+/* ===================== FOOTER ===================== */
+.footer {
+  margin-top: 80px;
+  padding-top: 24px;
+  border-top: 1px solid #eaeaea;
+  text-align: center;
+}
+
+.footer p {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+  /* ===================== RESPONSIVE (simple stack on mobile) ===================== */
+  @media (max-width:880px){
+    .about { grid-template-columns: 1fr; }
+    .card-grid { grid-template-columns: 1fr; }
+    .wrap { padding: 0 16px; }
+  }
+
+  /* reduce motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    .progress-fill { transition: none !important; }
+  }
