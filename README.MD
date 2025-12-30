@@ -92,3 +92,10 @@ https://github.com/mohyA81/Interior-designer-portfolio-about-timeline.git
 │   └── img
 │       └── pic.jpg
 └── README.md
+
+
+## 📌 Author
+
+Made by **Tiara** — Frontend Developer
+
+
